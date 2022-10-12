@@ -1,0 +1,15 @@
+<div fxLayout="column">
+    <div class="div-detalhe"><span>Nome: </span>{{cliente.nome}}</div>
+    <div class="div-detalhe"><span>Tipo Pessoa: </span>{{cliente.tipo}}</div>
+    <div class="div-detalhe"><span>Cpf/Cnpj: </span>{{cliente.cpfCnpj | cpfCnpj}}</div>
+    <div class="div-detalhe"><span>Rg/Ie: </span>{{cliente.rg}}</div>
+    <div class="div-detalhe"><span>Ativo: </span>{{cliente.ativo ? 'Sim' : 'Não'}}</div>
+    <div class="div-detalhe"><span>Data Cadastro: </span>{{cliente.dataCadastro | date : 'dd/MM/yyyy'}}</div>
+    <div *ngIf="cliente.telefones?.length">
+        <div mat-subheader style="font-weight: 600">Telefones:</div>
+        <mat-list-item fxLayout="row" *ngFor="let telefone of cliente.telefones">
+            <mat-icon style="width: 16px; height: 18px; font-size: 16px; margin-right: 5px; margin-left: 10px;" mat-list-icon>call</mat-icon>
+            <div mat-line>{{telefone.telefone}}</div>
+        </mat-list-item>
+    </div>
+</div>

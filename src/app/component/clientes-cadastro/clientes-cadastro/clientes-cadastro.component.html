@@ -1,0 +1,98 @@
+<div fxLayout="column" class="page">
+    <div fxLayout="row" fxLayoutAlign="start center" >
+        <button mat-icon-button routerLink="/clientes"><mat-icon>arrow_back_ios</mat-icon></button>
+        <div class="sub-title">Cadastrar Cliente</div>
+    </div>
+
+    <div fxLayout="column" style="margin-left: 30px;margin-top: 30px;">
+
+        <div fxLayout="row">
+            <div fxLayout="column" fxLayoutAlign="end start" >
+                <label>Nome</label>
+                <div style="font-size: 10px;">
+                    <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" [(ngModel)]="cliente.nome">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center start" style="margin-top: 8px; margin-right: 25px;">
+                <mat-radio-group [(ngModel)]="cliente.tipo" fxLayout="column">
+                    <mat-radio-button [value]="FISICA">Pessoa Física</mat-radio-button>
+                    <mat-radio-button [value]="JURIDICA">Pessoa Jurídica</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="center start" style="margin-top: 8px;">
+                <label>Ativo ?</label>
+                <mat-radio-group [(ngModel)]="cliente.ativo" fxLayout="row">
+                    <mat-radio-button style="margin-right: 10px;" [value]="true">Sim</mat-radio-button>
+                    <mat-radio-button [value]="false">Não</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+        </div>
+        <div fxLayout="row">
+            <div>
+                <div fxLayout="column" fxLayoutAlign="end start" *ngIf="cliente.tipo == FISICA">
+                    <label>Cpf</label>
+                    <div style="font-size: 10px;">
+                        <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                            <mat-label>Cpf</mat-label>
+                            <input matInput type="text" [(ngModel)]="cliente.cpfCnpj" mask="000.000.000-00">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="end start" *ngIf="cliente.tipo == JURIDICA">
+                    <label>Cnpj</label>
+                    <div style="font-size: 10px;">
+                        <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                            <mat-label>Cnpj</mat-label>
+                            <input matInput type="text" [(ngModel)]="cliente.cpfCnpj" mask="00.000.000/0000-00">
+                        </mat-form-field>
+                    </div>
+        
+                </div>
+            </div>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="end start" *ngIf="cliente.tipo == FISICA">
+                    <label>RG</label>
+                    <div style="font-size: 10px;">
+                        <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                            <mat-label>RG</mat-label>
+                            <input matInput type="text" [(ngModel)]="cliente.rg" mask="00.000.000">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="end start" *ngIf="cliente.tipo == JURIDICA">
+                    <label>Inscrição Estadual</label>
+                    <div style="font-size: 10px;">
+                        <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                            <mat-label>Inscrição Estadual</mat-label>
+                            <input matInput type="text" [(ngModel)]="cliente.rg" mask="000.000.000.000">
+                        </mat-form-field>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <label>Telefone(s)</label>
+                <button mat-icon-button (click)="addTelefone()"><mat-icon>add</mat-icon></button>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+                <div style="font-size: 10px;" *ngFor="let telefone of telefones; let i = index">
+                    <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                        <mat-label>Telefone</mat-label>
+                        <input matInput type="text" [(ngModel)]="telefones[i].telefone" mask="(00) 00000-0000">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <button mat-raised-button class="button-padrao bg-gren white" style="margin-right: 100px;" (click)="salvar()">SALVAR</button>
+            <button mat-raised-button class="button-padrao bg-red white" (click)="cancelar()">CANCELAR</button>
+        </div>
+    </div>
+</div>

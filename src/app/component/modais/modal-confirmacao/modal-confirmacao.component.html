@@ -1,0 +1,7 @@
+<h4 style="text-align: center">{{ txtEnunciado }}</h4>
+<h6 style="text-align: center"><small>{{ txtSmall }}</small></h6>
+
+<div style="margin-top: 35px; display: flex; justify-content: space-around">
+    <button mat-raised-button class="button-padrao bg-gren white" style="margin-right: 30px;" (click)="retornar(true)">{{ txtPositivo }}</button>
+    <button mat-raised-button class="button-padrao bg-red white" (click)="retornar(false)">{{ txtNegativo }}</button>
+</div>

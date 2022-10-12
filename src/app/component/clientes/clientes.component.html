@@ -1,0 +1,56 @@
+<div fxLayout="column" fxFlex="100" class="page">
+    <div fxLayout="column" fxFlex="20" >
+        <span class="title">Clientes</span>
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100">
+            <div fxLayout="row">
+                <div style="font-size:10px; margin-right: 10px;">
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" placeholder="Pesquisar Clientes" [(ngModel)]="filtro">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="div-ckeckbox">
+                    <mat-checkbox (click)="filterAtivos()">Ativo</mat-checkbox>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <button mat-raised-button class="button-padrao bg-black white" style="width: 220px;" (click)="adicionarCliente()">
+                        <mat-icon style="margin-right: 5px;">add_circle_outline</mat-icon>
+                        ADICIONAR CLIENTE
+                    </button>
+                </div>
+            </div>
+        </div>
+    <div fxLayout="column" fxFlex="80" style="height: 100%;">
+        <table mat-table [dataSource]="clientes | filter : filtro">
+            <caption></caption>
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef>NOME</th>
+                <td mat-cell *matCellDef="let element">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <div>
+                            <button class="button-38 mg-r-10" matTooltip="Detalhes" (click)="openDetalhes(element)"><mat-icon>format_list_bulleted</mat-icon></button>
+                            <button class="button-38 mg-r-10" matTooltip="Editar"><mat-icon>edit</mat-icon></button>
+                            <button class="button-38 mg-r-10" matTooltip="Deletar" (click)="deletarCliente(element.id)"><mat-icon>delete</mat-icon></button>
+                        </div>
+                        <div>{{element.nome}}</div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef>CPF / CNPJ</th>
+                <td mat-cell *matCellDef="let element"> {{element.cpfCnpj | cpfCnpj}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ativo">
+                <th mat-header-cell *matHeaderCellDef>ATIVO</th>
+                <td mat-cell *matCellDef="let element"> {{element.ativo ? 'Sim' : 'Não'}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+$web-cadastro-clientes-primary: mat.define-palette(mat.$indigo-palette);
+$web-cadastro-clientes-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$web-cadastro-clientes-warn: mat.define-palette(mat.$red-palette);
+$web-cadastro-clientes-theme: mat.define-light-theme((
+  color: (
+    primary: $web-cadastro-clientes-primary,
+    accent: $web-cadastro-clientes-accent,
+    warn: $web-cadastro-clientes-warn,
+  )
+));
+@include mat.all-component-themes($web-cadastro-clientes-theme);
+
