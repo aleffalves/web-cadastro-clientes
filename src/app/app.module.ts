@@ -28,6 +28,7 @@ import { CpfCnpjPipe } from './utils/cpf-cnpj.pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EdicaoClientesComponent } from './component/edicao-clientes/edicao-clientes/edicao-clientes.component';
 import { ClientesCadastroComponent } from './component/clientes-cadastro/clientes-cadastro/clientes-cadastro.component';
+import {MatSidenavModule} from '@angular/material/sidenav'
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -69,7 +70,8 @@ export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
     MatTooltipModule,
     MatDialogModule,
     MatListModule ,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatSidenavModule
   ],
   providers: [
     MsgService

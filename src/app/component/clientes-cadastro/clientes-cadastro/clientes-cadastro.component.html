@@ -1,7 +1,11 @@
 <div fxLayout="column" class="page">
-    <div fxLayout="row" fxLayoutAlign="start center" >
+    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="!cliente.id">
         <button mat-icon-button routerLink="/clientes"><mat-icon>arrow_back_ios</mat-icon></button>
         <div class="sub-title">Cadastrar Cliente</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="cliente.id">
+        <div class="sub-title" style="margin-left: 30px;">Atualizar Cliente</div>
     </div>
 
     <div fxLayout="column" style="margin-left: 30px;margin-top: 30px;">
@@ -82,16 +86,17 @@
                 <button mat-icon-button (click)="addTelefone()"><mat-icon>add</mat-icon></button>
             </div>
             <div fxLayout="row wrap" fxLayoutAlign="start center">
-                <div style="font-size: 10px;" *ngFor="let telefone of telefones; let i = index">
-                    <mat-form-field style="width: 250px; margin-right: 50px;" appearance="outline">
+                <div fxLayout="row"style="font-size: 10px;margin-right: 50px;" *ngFor="let telefone of telefones; let i = index" >
+                    <mat-form-field style="width: 250px;" appearance="outline">
                         <mat-label>Telefone</mat-label>
                         <input matInput type="text" [(ngModel)]="telefones[i].telefone" mask="(00) 00000-0000">
                     </mat-form-field>
+                    <div><button mat-icon-button (click)="removerTelefone(telefones[i].id)"><mat-icon style="color: red;">close</mat-icon></button></div>
                 </div>
             </div>
         </div>
         <div style="margin-top: 20px;">
-            <button mat-raised-button class="button-padrao bg-gren white" style="margin-right: 100px;" (click)="salvar()">SALVAR</button>
+            <button mat-raised-button class="button-padrao bg-gren white" style="margin-right: 100px; margin-bottom: 10px;" (click)="salvar()">SALVAR</button>
             <button mat-raised-button class="button-padrao bg-red white" (click)="cancelar()">CANCELAR</button>
         </div>
     </div>

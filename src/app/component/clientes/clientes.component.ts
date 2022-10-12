@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/model/cliente.model';
+import { Telefone } from 'src/app/model/telefone.model';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { MsgService } from 'src/app/service/msg.service';
 import { ModalConfirmacaoComponent } from '../modais/modal-confirmacao/modal-confirmacao.component';
@@ -17,8 +18,12 @@ export class ClientesComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'cpf', 'ativo'];
   clientes: Cliente[] = new Array;
   clientesOrig: Cliente[] = new Array;
+  cliente: Cliente = new Cliente()
+  telefones: Telefone[] = new Array
   filtro: string = ''
   filterAtivo: boolean = false;
+  showFiller : boolean = false;
+
 
   constructor(
     private router : Router,
@@ -73,6 +78,12 @@ export class ClientesComponent implements OnInit {
     })
   }
 
+  editar(cliente: Cliente){
+    this.cliente = cliente
+    this.telefones = cliente.telefones
+    this.showFiller = !this.showFiller
+  }
+
   filterAtivos(){
     this.filterAtivo = !this.filterAtivo
     if(this.filterAtivo){
@@ -80,6 +91,11 @@ export class ClientesComponent implements OnInit {
     }else{
       this.clientes = this.clientesOrig
     }
+  }
+
+  close(){
+    this.buscarClientes();
+    this.showFiller = false
   }
 
 }

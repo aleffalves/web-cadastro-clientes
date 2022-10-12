@@ -27,4 +27,8 @@ export class ClienteService {
     return this.http.delete(this.urlApi + '/excluir/' + idCliente)
   }
 
+  atualizarCliente(cliente: Cliente, idCliente : number):Observable<Cliente>{
+    return this.http.put<Cliente>(this.urlApi + '/atualizar/' + idCliente, cliente)
+  }
+
 }
